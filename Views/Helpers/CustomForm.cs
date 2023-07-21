@@ -16,6 +16,7 @@ namespace DocSmart.Views.Helpers
             StartPosition = FormStartPosition.CenterScreen;
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Font = new Font("Segoe UI", 12, FontStyle.Regular);
+            Text = "DocSmart";
             BackColor = Color.LightGray;
         }
     }

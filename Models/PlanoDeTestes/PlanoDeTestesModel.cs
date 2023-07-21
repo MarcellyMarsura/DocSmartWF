@@ -20,5 +20,7 @@ namespace DocSmart.Models.PlanoDeTestes
         }
 
         public static PlanoDeTestesModel Instance { get => instance; }
+
+        public static PlanoDeTestesModel Clear { get => new PlanoDeTestesModel(); }
     }
 }

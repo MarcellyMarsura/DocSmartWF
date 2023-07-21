@@ -57,6 +57,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MockDados.cs" />
+    <Compile Include="Models\Admin\UsuarioModel.cs" />
     <Compile Include="Models\PlanoDeTestes\CenarioModel.cs" />
     <Compile Include="Models\PlanoDeTestes\HeaderCenarioModel.cs" />
     <Compile Include="Models\PlanoDeTestes\HeaderPlanoTesteModel.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="Views\Helpers\CustomForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Views\Helpers\Utils.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -122,11 +125,19 @@
     <EmbeddedResource Include="Views\Forms\HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\PlanoDeTestes\CenariosForm.resx">
+      <DependentUpon>CenariosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\PlanoDeTestes\NovoCenarioForm.resx">
+      <DependentUpon>NovoCenarioForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\PlanoDeTestes\NovoPlanoForm.resx">
+      <DependentUpon>NovoPlanoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Forms\SobreForm.resx">
       <DependentUpon>SobreForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Arquivos\Templates\PlanoDeTestes.xlsx" />
-    <None Include="Arquivos\Templates\PlanoTestes.xlsx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
