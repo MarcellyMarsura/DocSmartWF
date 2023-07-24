@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgCenarios = new System.Windows.Forms.DataGridView();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnFinalizarPlano = new System.Windows.Forms.Button();
@@ -44,28 +44,28 @@
             this.dgCenarios.AllowUserToAddRows = false;
             this.dgCenarios.AllowUserToDeleteRows = false;
             this.dgCenarios.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgCenarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 12F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgCenarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgCenarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgCenarios.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 12F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgCenarios.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgCenarios.Location = new System.Drawing.Point(12, 57);
             this.dgCenarios.Name = "dgCenarios";
             this.dgCenarios.ReadOnly = true;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgCenarios.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgCenarios.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgCenarios.RowTemplate.Height = 24;
             this.dgCenarios.Size = new System.Drawing.Size(776, 331);
             this.dgCenarios.TabIndex = 0;
@@ -78,6 +78,7 @@
             this.btnCancelar.TabIndex = 4;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnFinalizarPlano
             // 
@@ -87,6 +88,7 @@
             this.btnFinalizarPlano.TabIndex = 6;
             this.btnFinalizarPlano.Text = "Finalizar Plano";
             this.btnFinalizarPlano.UseVisualStyleBackColor = true;
+            this.btnFinalizarPlano.Click += new System.EventHandler(this.btnFinalizarPlano_Click);
             // 
             // btnNovoCenario
             // 
@@ -94,7 +96,7 @@
             this.btnNovoCenario.Name = "btnNovoCenario";
             this.btnNovoCenario.Size = new System.Drawing.Size(143, 44);
             this.btnNovoCenario.TabIndex = 7;
-            this.btnNovoCenario.Text = "DocSmart";
+            this.btnNovoCenario.Text = "Novo Cenário";
             this.btnNovoCenario.UseVisualStyleBackColor = true;
             this.btnNovoCenario.Click += new System.EventHandler(this.btnNovoCenario_Click);
             // 
@@ -119,6 +121,8 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.dgCenarios);
             this.Name = "CenariosForm";
+            this.Activated += new System.EventHandler(this.CenariosForm_Activated);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CenariosForm_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dgCenarios)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

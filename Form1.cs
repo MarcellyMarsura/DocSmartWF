@@ -13,11 +13,12 @@ using System.Windows.Forms;
 
 namespace DocSmart
 {
-    public partial class Form1 : CustomForm
+    public partial class Form1 : CustomForm<Form1>
     {
         public Form1()
         {
             InitializeComponent();
+            Form = this;
         }
 
         private void button1_Click(object sender, EventArgs e)

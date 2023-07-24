@@ -1,4 +1,5 @@
 ﻿using DocSmart.Models.Admin;
+using DocSmart.Models.PlanoDeTestes;
 using DocSmart.Views.Forms.PlanoDeTestes;
 using DocSmart.Views.Helpers;
 using System;
@@ -13,41 +14,92 @@ using System.Windows.Forms;
 
 namespace DocSmart.Views.Forms
 {
-    public partial class HomeForm : CustomForm
+    public partial class HomeForm : CustomForm<HomeForm>
     {
         public HomeForm()
         {
-            InitializeComponent();
-            txtSenha.UseSystemPasswordChar = true;
+            try
+            {
+                InitializeComponent();
+                txtSenha.UseSystemPasswordChar = true;
+
+                Form = this;
+            }
+            catch (Exception ex)
+            {
+                Utils.ExibeMensagemErro(ex.Message);
+            }
+            
         }
 
         private void btnPlanoDeTestes_Click(object sender, EventArgs e)
         {
-            Utils.ProximaTela(this, new NovoPlanoForm());
+            try
+            {
+                PlanoDeTestesModel planoDeTestes = PlanoDeTestesModel.Clear;
+                Utils.ProximaTela(this, new NovoPlanoForm());
+            }
+            catch (Exception ex)
+            {
+                Utils.ExibeMensagemErro(ex.Message);
+            }
         }
 
         private void btnDocumentacaoDeTeste_Click(object sender, EventArgs e)
         {
-            //TODO: Adicionar fluxo de tela DocumentacaoDeTeste
+            try
+            {
+                throw new NotImplementedException();
+                //TODO: Adicionar fluxo de tela DocumentacaoDeTeste
+            }
+            catch (Exception ex)
+            {
+                Utils.ExibeMensagemErro(ex.Message);
+            }
         }
 
         private void btnControleTestes_Click(object sender, EventArgs e)
         {
-            //TODO: Adicionar fluxo de tela ControleTestes
+            try
+            {
+                throw new NotImplementedException();
+                //TODO: Adicionar fluxo de tela ControleTestes
+            }
+            catch (Exception ex)
+            {
+                Utils.ExibeMensagemErro(ex.Message);
+            }
         }
 
         private void btnChecklistDemanda_Click(object sender, EventArgs e)
         {
-            //TODO: Adicionar fluxo de tela ChecklistDemanda
+            try
+            {
+                throw new NotImplementedException();
+                //TODO: Adicionar fluxo de tela ChecklistDemanda
+            }
+            catch (Exception ex)
+            {
+                Utils.ExibeMensagemErro(ex.Message);
+            }
+
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            UsuarioModel usuarioModel = new UsuarioModel();
-            usuarioModel.Usuario = txtUsuario.Text;
-            usuarioModel.Senha = txtSenha.Text;
+            try
+            {
+                UsuarioModel usuarioModel = new UsuarioModel();
+                usuarioModel.Usuario = txtUsuario.Text;
+                usuarioModel.Senha = txtSenha.Text;
 
-            //TODO: Método de validação para login de usuario
+                throw new NotImplementedException();
+                //TODO: Método de validação para login de usuario
+            }
+            catch (Exception ex)
+            {
+                Utils.ExibeMensagemErro(ex.Message);
+            }
         }
     }
 }

@@ -11,11 +11,12 @@ using System.Windows.Forms;
 
 namespace DocSmart.Views.Forms
 {
-    public partial class SobreForm : CustomForm
+    public partial class SobreForm : CustomForm<SobreForm>
     {
         public SobreForm()
         {
             InitializeComponent();
+            Form = this;
         }
     }
 }

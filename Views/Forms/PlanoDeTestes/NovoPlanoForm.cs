@@ -12,36 +12,59 @@ using System.Windows.Forms;
 
 namespace DocSmart.Views.Forms.PlanoDeTestes
 {
-    public partial class NovoPlanoForm : CustomForm
+    public partial class NovoPlanoForm : CustomForm<NovoPlanoForm>
     {
         PlanoDeTestesModel planoDeTestes = PlanoDeTestesModel.Instance;
         public NovoPlanoForm()
         {
             InitializeComponent();
             txtCliente.Items.AddRange(MockDados.Cliente().ToArray());
+
+            Form = this;
         }
 
         private void btnCenarios_Click(object sender, EventArgs e)
         {
-            HeaderPlanoTesteModel headerPlanoTeste = new HeaderPlanoTesteModel();
-            headerPlanoTeste.Cliente = txtCliente.Text;
-            headerPlanoTeste.Descricao = txtDescricao.Text;
-            headerPlanoTeste.Titulo = txtTitulo.Text;
-            headerPlanoTeste.CodigoDemanda = txtCodigoDemanda.Text;
+            try
+            {
+                HeaderPlanoTesteModel headerPlanoTeste = new HeaderPlanoTesteModel();
+                headerPlanoTeste.Cliente = txtCliente.Text;
+                headerPlanoTeste.Descricao = txtDescricao.Text;
+                headerPlanoTeste.Titulo = txtTitulo.Text;
+                headerPlanoTeste.CodigoDemanda = txtCodigoDemanda.Text;
 
-            planoDeTestes.HeaderPlanoTeste = headerPlanoTeste;
+                planoDeTestes.HeaderPlanoTeste = headerPlanoTeste;
 
-            Utils.ProximaTela(this, new CenariosForm());
+                Utils.ProximaTela(this, new CenariosForm());
+            }
+            catch (Exception ex)
+            {
+                Utils.ExibeMensagemErro(ex.Message);
+            }
         }
 
         private void NovoPlanoForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Utils.TelaAnterior(new HomeForm(), this);
+            try
+            {
+                Utils.TelaAnterior(HomeForm.Instance, this);
+            }
+            catch (Exception ex)
+            {
+                Utils.ExibeMensagemErro(ex.Message);
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            Utils.TelaAnterior(new HomeForm(), this);
+            try
+            {
+                Utils.TelaAnterior(HomeForm.Instance, this);
+            }
+            catch (Exception ex)
+            {
+                Utils.ExibeMensagemErro(ex.Message);
+            }
         }
     }
 }

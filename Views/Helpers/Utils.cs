@@ -18,8 +18,19 @@ namespace DocSmart.Views.Helpers
 
         public static void TelaAnterior(Form formPai, Form formFilho)
         {
+            if(formPai == null)
+            {
+                MessageBox.Show("Erro ao voltar a tela");
+                Application.Exit();
+                return;
+            }
             formFilho.Close();
             formPai.Show();
+        }
+
+        public static void ExibeMensagemErro(string erro)
+        {
+            MessageBox.Show(erro, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
