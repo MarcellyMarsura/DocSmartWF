@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
-
+using Word = Microsoft.Office.Interop.Word;
 
 
 namespace DocSmart.Controllers
@@ -21,16 +21,15 @@ namespace DocSmart.Controllers
         Excel.Application excelApp;
         Excel.Workbook templateWorkbook;
         Excel.Worksheet templateWorksheet;
+        
+        Word.Application wordApp;
+        Word.Document doc;
 
-        Excel.Workbook newWorkbook;
-        Excel.Worksheet newWorksheet;
+        string pathWord;
 
         DocumentacaoTesteModel documentacaoTeste;
-        int numCenario;
-        string pathWord;
-        string newPath;
-
-        public DocumentacaoTestes(string pathExcel)
+  
+        public DocumentacaoTestes(string pathExcel, string pathWord)
         {
             //currentDirectory = Directory.GetParent(Directory.GetCurrentDirectory())?.FullName;
             //pathProjeto = Directory.GetParent(Directory.GetParent(currentDirectory)?.FullName)?.FullName;
@@ -41,8 +40,10 @@ namespace DocSmart.Controllers
             templateWorkbook = excelApp.Workbooks.Open(pathExcel);
             templateWorksheet = (Excel.Worksheet)templateWorkbook.ActiveSheet;
 
-            documentacaoTeste = DocumentacaoTesteModel.Instance;
+            
 
+            documentacaoTeste = DocumentacaoTesteModel.Instance;
+            this.pathWord = pathWord;
         }
 
         public void LerExcel()
@@ -75,6 +76,7 @@ namespace DocSmart.Controllers
                         documentacaoTeste.Cenarios.Add(documentacaoCenarioModel);
                     }
                 }
+                GeraDocumentacao();
             }
             finally
             {
@@ -93,5 +95,46 @@ namespace DocSmart.Controllers
             }
         }
 
+        private void GeraDocumentacao()
+        {
+            foreach (var cenario in documentacaoTeste.Cenarios)
+            {
+                CriaWordPreenchido(cenario);
+            }
+        }
+
+        private void CriaWordPreenchido(DocumentacaoCenarioModel cenario)
+        {
+            
+            try
+            {
+                wordApp = new Word.Application();
+                string templatePath = "C:\\Projeto - Relatorio Estagio\\DocSmart - WF\\DocSmart\\Arquivos\\Templates\\DocumentacaoTestes.docx";
+                doc = wordApp.Documents.Add(templatePath);
+
+                object replaceAll = Word.WdReplace.wdReplaceAll;
+
+                doc.Content.Find.Execute(FindText: "##CLIENTE##", ReplaceWith: documentacaoTeste.Cliente, Replace: replaceAll); ;
+                doc.Content.Find.Execute(FindText: "##TITULO##", ReplaceWith: documentacaoTeste.Titulo, Replace: replaceAll);
+                
+                doc.Content.Find.Execute(FindText: "##MODULO##", ReplaceWith: cenario.Modulo, Replace: replaceAll);
+                doc.Content.Find.Execute(FindText: "##CENARIO##", ReplaceWith: cenario.Cenario, Replace: replaceAll);
+                doc.Content.Find.Execute(FindText: "##DESCRICAO##", ReplaceWith: cenario.Descricao, Replace: replaceAll);
+                doc.Content.Find.Execute(FindText: "##RESULTADO##", ReplaceWith: cenario.Resultado, Replace: replaceAll);
+
+                doc.SaveAs2(pathWord + $"\\{cenario.Modulo} - {cenario.Cenario}.docx");
+            }
+            finally
+            {
+                doc.Close();
+                wordApp.Quit();
+
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(doc);
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(wordApp);
+                doc = null;
+                wordApp = null;
+                GC.Collect();
+            }
+        }
     }
 }

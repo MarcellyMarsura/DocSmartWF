@@ -1,6 +1,8 @@
 ﻿using DocSmart.Models.Admin;
+using DocSmart.Models.DocumentacaoTestes;
 using DocSmart.Models.PlanoDeTestes;
 using DocSmart.Views.Forms.PlanoDeTestes;
+using DocSmart.Views.Forms.DocumentacaoTestes;
 using DocSmart.Views.Helpers;
 using System;
 using System.Collections.Generic;
@@ -49,8 +51,8 @@ namespace DocSmart.Views.Forms
         {
             try
             {
-                throw new NotImplementedException();
-                //TODO: Adicionar fluxo de tela DocumentacaoDeTeste
+                DocumentacaoTesteModel documentacaoTesteModel = DocumentacaoTesteModel.Clear;
+                Utils.ProximaTela(this, new DocumentacaoTestesForm());
             }
             catch (Exception ex)
             {

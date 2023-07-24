@@ -80,7 +80,13 @@ Resultado";
         private void button2_Click(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();
-            DocumentacaoTestes documentacaoTestes = new DocumentacaoTestes(openFileDialog1.FileName);
+            
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog1.ShowDialog();
+            DocumentacaoTestes documentacaoTestes = new DocumentacaoTestes(openFileDialog1.FileName, folderBrowserDialog1.SelectedPath);
             documentacaoTestes.LerExcel();
         }
     }
