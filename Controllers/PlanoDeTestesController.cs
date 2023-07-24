@@ -50,22 +50,28 @@ namespace DocSmart.Controllers
 
         public void GerarPlanoTestes()
         {
-            CriaWorkbook();
-            CriarDescricaoDocumento();
-            int i = 8;
-            foreach (var cenario in planoTeste.Cenarios)
+            try
             {
-                foreach (var modulo in cenario.Header.Modulos)
+                CriaWorkbook();
+                CriarDescricaoDocumento();
+                int i = 8;
+                foreach (var cenario in planoTeste.Cenarios)
                 {
-                    CriarTituloCenario(i++, cenario.Header, modulo);
-                    foreach (var passo in cenario.Passos)
+                    foreach (var modulo in cenario.Header.Modulos)
                     {
-                        CriarPassoCenario(i++, passo);
+                        CriarTituloCenario(i++, cenario.Header, modulo);
+                        foreach (var passo in cenario.Passos)
+                        {
+                            CriarPassoCenario(i++, passo);
+                        }
                     }
+
                 }
-                
             }
-            SalvarNovoPlano();
+            finally
+            {
+                SalvarNovoPlano();
+            }
 
         }
 
@@ -120,22 +126,27 @@ namespace DocSmart.Controllers
 
         private void SalvarNovoPlano()
         {
-            MessageBox.Show(newPath);
-            //newWorkbook.SaveAs(newPath + $"\\[{planoTeste.HeaderPlanoTeste.CodigoDemanda}] - Plano de Teste.xlsx");
+            try
+            {
+                MessageBox.Show(newPath);
+                newWorkbook.SaveAs(newPath + $"\\{planoTeste.HeaderPlanoTeste.CodigoDemanda} - Plano de Teste.xlsx", Excel.XlFileFormat.xlWorkbookDefault);
+            }
+            finally
+            {
+                // Fechar as pastas de trabalho e o aplicativo Excel
+                templateWorkbook.Close();
+                newWorkbook.Close();
+                excelApp.Quit();
 
-            // Fechar as pastas de trabalho e o aplicativo Excel
-            templateWorkbook.Close();
-            newWorkbook.Close();
-            excelApp.Quit();
+                // Liberar recursos
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(templateWorksheet);
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(templateWorkbook);
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(newWorksheet);
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(newWorkbook);
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
 
-            // Liberar recursos
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(templateWorksheet);
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(templateWorkbook);
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(newWorksheet);
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(newWorkbook);
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
-
-            MessageBox.Show("Células copiadas com sucesso para o novo arquivo Excel!");
+                MessageBox.Show("Células copiadas com sucesso para o novo arquivo Excel!");
+            }
         }
     }
 }

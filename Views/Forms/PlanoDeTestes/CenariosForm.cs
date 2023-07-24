@@ -69,7 +69,10 @@ namespace DocSmart.Views.Forms.PlanoDeTestes
             try
             {
                 //TODO: Adicionar OpenFolderDialog para inserir newPath
-                PlanoDeTestesController planoDeTestesController = new PlanoDeTestesController("");
+
+                folderBrowserDialog1.ShowDialog();
+                string newPath = folderBrowserDialog1.SelectedPath;
+                PlanoDeTestesController planoDeTestesController = new PlanoDeTestesController(newPath);
                 planoDeTestesController.GerarPlanoTestes();
             }
             catch (Exception ex)

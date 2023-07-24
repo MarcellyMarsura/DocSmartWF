@@ -76,5 +76,12 @@ Resultado";
 
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+            DocumentacaoTestes documentacaoTestes = new DocumentacaoTestes(openFileDialog1.FileName);
+            documentacaoTestes.LerExcel();
+        }
     }
 }
