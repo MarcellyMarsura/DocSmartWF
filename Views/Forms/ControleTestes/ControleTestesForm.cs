@@ -34,8 +34,8 @@ namespace DocSmart.Views.Forms.ControleTestes
 
         private void btnGerarArquivo_Click(object sender, EventArgs e)
         {
-            var controleTestes = new ControleTestesController(openFileDialog.FileName, folderBrowserDialog.SelectedPath);
-            controleTestes.GeraControleTestes();
+            var controleTestes = new ControleTestesController(openFileDialog.FileName);
+            controleTestes.GeraControleTestes(folderBrowserDialog.SelectedPath);
         }
     }
 }

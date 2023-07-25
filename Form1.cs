@@ -92,8 +92,8 @@ Resultado";
             //DocumentacaoTestesController documentacaoTestes = new DocumentacaoTestesController(openFileDialog1.FileName, folderBrowserDialog1.SelectedPath);
             //documentacaoTestes.LerExcel();
 
-            ControleTestesController controleTestes = new ControleTestesController(openFileDialog1.FileName, folderBrowserDialog1.SelectedPath);
-            controleTestes.GeraControleTestes();
+            ControleTestesController controleTestes = new ControleTestesController(openFileDialog1.FileName);
+            controleTestes.GeraControleTestes(folderBrowserDialog1.SelectedPath);
         }
 
         private void button4_Click(object sender, EventArgs e)

@@ -1,24 +1,14 @@
 ﻿using DocSmart.Models.DocumentacaoTestes;
-using DocSmart.Models.PlanoDeTestes;
-using Microsoft.Office.Interop.Word;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
-
-
 
 namespace DocSmart.Controllers
 {
     public class ControleTestesController
     {
-
         Excel.Application excelApp;
-        Excel.Workbook planoWorkbook;
-        Excel.Worksheet planoWorksheet;
+        Excel.Workbook planoDeTestesWorkbook;
+        Excel.Worksheet planoDeTestesWorksheet;
 
         Excel.Workbook newWorkbook;
         Excel.Worksheet newWorksheet;
@@ -28,125 +18,121 @@ namespace DocSmart.Controllers
 
         DocumentacaoTesteModel documentacaoTeste;
 
-        string newPath;
-
-        public ControleTestesController(string pathPlanoTeste, string newPath)
-        {
-            string templatePath = "C:\\Projeto - Relatorio Estagio\\DocSmart - WF\\DocSmart\\Arquivos\\Templates\\ControleTestes.xlsx";
-            
-            excelApp = new Excel.Application();
-            planoWorkbook = excelApp.Workbooks.Open(pathPlanoTeste);
-            planoWorksheet = (Excel.Worksheet)planoWorkbook.ActiveSheet;
-
-            templateWorkbook = excelApp.Workbooks.Open(templatePath);
-            templateWorksheet = (Excel.Worksheet)templateWorkbook.ActiveSheet;
-
-            newWorkbook = excelApp.Workbooks.Add();
-            newWorksheet = (Excel.Worksheet)newWorkbook.ActiveSheet;
-
+        public ControleTestesController(string diretorioPlanoTeste)
+        {            
+            InicializarArquivos(diretorioPlanoTeste);
             documentacaoTeste = DocumentacaoTesteModel.Instance;
-
-            this.newPath = newPath;
         }
 
-        public void GeraControleTestes()
+        private void InicializarArquivos(string diretorioPlanoTeste)
         {
-            LerExcel();
-            CriaWorkbook();
-            PreencheExcel();
-            SalvarNovo();
+            excelApp = new Excel.Application();
+            AbrirExcelPlanoDeTestes(diretorioPlanoTeste);
+            AbrirExcelTemplate(ArquivoHelper.DiretorioTemplateControleTestes());
+            CriarNovoExcel();
+        }
+        private void AbrirExcelPlanoDeTestes(string diretorioPlanoTeste)
+        {
+            planoDeTestesWorkbook = excelApp.Workbooks.Open(diretorioPlanoTeste);
+            planoDeTestesWorksheet = (Excel.Worksheet)planoDeTestesWorkbook.ActiveSheet;
+        }
+
+        private void AbrirExcelTemplate(string diretorioTemplate)
+        {
+            templateWorkbook = excelApp.Workbooks.Open(diretorioTemplate);
+            templateWorksheet = (Excel.Worksheet)templateWorkbook.ActiveSheet;
+        }
+
+        private void CriarNovoExcel()
+        {
+            newWorkbook = excelApp.Workbooks.Add();
+            newWorksheet = (Excel.Worksheet)newWorkbook.ActiveSheet;
+            templateWorksheet.Cells.Copy(Type.Missing);
+            newWorksheet.Cells.PasteSpecial(Excel.XlPasteType.xlPasteAll);
+        }
+
+
+        public void GeraControleTestes(string diretorioNovoArquivo)
+        {
+            try
+            {
+                LerExcel();
+                PreencheExcel();
+                SalvarNovo(diretorioNovoArquivo);
+            }
+            finally
+            {
+                FecharArquivos();
+            }
         }
 
         private void LerExcel()
         {
-            try
+            const string CELULA_TEMPLATE_CLIENTE = "C3";
+            const string CELULA_TEMPLATE_DEMANDA = "C4";
+
+            documentacaoTeste.Cliente = planoDeTestesWorksheet.Range[CELULA_TEMPLATE_CLIENTE].Value;
+            documentacaoTeste.Titulo = planoDeTestesWorksheet.Range[CELULA_TEMPLATE_DEMANDA].Value;
+
+            int numLinha = 8;
+            while (planoDeTestesWorksheet.Range[$"B{numLinha}"].Value != null)
             {
-                const string CELULA_TEMPLATE_CLIENTE = "C3";
-                const string CELULA_TEMPLATE_DEMANDA = "C4";
 
-                documentacaoTeste.Cliente = planoWorksheet.Range[CELULA_TEMPLATE_CLIENTE].Value;
-                documentacaoTeste.Titulo = planoWorksheet.Range[CELULA_TEMPLATE_DEMANDA].Value;
-
-                for (int numLinha = 8; ; numLinha++)
+                if (planoDeTestesWorksheet.Range[$"B{numLinha}"].Value.Contains("Cen"))
                 {
-                    if (planoWorksheet.Range[$"B{numLinha}"].Value == null
-                        || planoWorksheet.Range[$"B{numLinha}"].Value == string.Empty)
-                    {
-                        break;
-                    }
+                    DocumentacaoCenarioModel documentacaoCenarioModel = new DocumentacaoCenarioModel();
 
-                    if (planoWorksheet.Range[$"B{numLinha}"].Value.Contains("Cen"))
-                    {
-                        DocumentacaoCenarioModel documentacaoCenarioModel = new DocumentacaoCenarioModel();
+                    documentacaoCenarioModel.Cenario = planoDeTestesWorksheet.Range[$"B{numLinha}"].Value;
+                    documentacaoCenarioModel.Modulo = planoDeTestesWorksheet.Range[$"C{numLinha}"].Value;
 
-                        documentacaoCenarioModel.Cenario = planoWorksheet.Range[$"B{numLinha}"].Value;
-                        documentacaoCenarioModel.Modulo = planoWorksheet.Range[$"C{numLinha}"].Value;
-                        documentacaoTeste.Cenarios.Add(documentacaoCenarioModel);
-                    }
+                    documentacaoTeste.Cenarios.Add(documentacaoCenarioModel);
                 }
-                
+                numLinha++;
             }
-            finally
-            {
-                planoWorkbook.Close();
-
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(planoWorksheet);
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(planoWorkbook);
-
-            }
-        }
-
-        private void CriaWorkbook()
-        {
-            templateWorksheet.Cells.Copy(Type.Missing);
-            newWorksheet.Cells.PasteSpecial(Excel.XlPasteType.xlPasteAll);
-
-            
         }
 
         private void PreencheExcel()
         {
-            const string LINHA_TEMPLATE_HEADER = "A2:H2";
             int numLinha = 2;
             foreach (var cenario in documentacaoTeste.Cenarios)
             {
-                Excel.Range sourceRange = templateWorksheet.Range[LINHA_TEMPLATE_HEADER];
-                Excel.Range destinationRange = newWorksheet.Range[$"A{numLinha}"];
-                sourceRange.Copy(destinationRange);
+                CopiarCelulasTemplate("A2:H2", $"A{numLinha}");
 
                 newWorksheet.Range[$"A{numLinha}"].Value = $"{cenario.Modulo}";
                 newWorksheet.Range[$"B{numLinha}"].Value = $"{cenario.Cenario}";
                 numLinha++;
             }
 
-            
+        }
+
+        private void CopiarCelulasTemplate(string linhaTemplate, string linhaNovoExcel)
+        {
+            Excel.Range sourceRange = templateWorksheet.Range[linhaTemplate];
+            Excel.Range destinationRange = newWorksheet.Range[linhaNovoExcel];
+            sourceRange.Copy(destinationRange);
         }
 
 
-        private void SalvarNovo()
+        private void SalvarNovo(string diretorioNovoArquivo)
         {
-            try
-            {
-                MessageBox.Show(newPath);
-                newWorkbook.SaveAs(newPath + $"\\{documentacaoTeste.Titulo} - Controle de Teste.xlsx", Excel.XlFileFormat.xlWorkbookDefault);
-            }
-            finally
-            {
-                // Fechar as pastas de trabalho e o aplicativo Excel
-                templateWorkbook.Close();
-                newWorkbook.Close();
-                excelApp.Quit();
+            string nomeArquivo = $"{documentacaoTeste.Titulo} - Controle de Teste.xlsx";
+            newWorkbook.SaveAs($"{diretorioNovoArquivo}\\{nomeArquivo}", Excel.XlFileFormat.xlWorkbookDefault);
+        }
 
-                // Liberar recursos
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(templateWorksheet);
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(templateWorkbook);
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(newWorksheet);
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(newWorkbook);
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+        private void FecharArquivos()
+        {
+            planoDeTestesWorkbook.Close();
+            templateWorkbook.Close();
+            newWorkbook.Close();
+            excelApp.Quit();
 
-                GC.Collect();
-                MessageBox.Show("Células copiadas com sucesso para o novo arquivo Excel!");
-            }
+            ArquivoHelper.LiberarRecursos(planoDeTestesWorksheet);
+            ArquivoHelper.LiberarRecursos(planoDeTestesWorkbook);
+            ArquivoHelper.LiberarRecursos(templateWorksheet);
+            ArquivoHelper.LiberarRecursos(templateWorkbook);
+            ArquivoHelper.LiberarRecursos(newWorksheet);
+            ArquivoHelper.LiberarRecursos(newWorkbook);
+            ArquivoHelper.LiberarRecursos(excelApp);
         }
     }
 }
