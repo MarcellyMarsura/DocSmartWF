@@ -2,6 +2,7 @@
 using DocSmart.Models.ChecklistDemanda;
 using DocSmart.Models.PlanoDeTestes;
 using DocSmart.Views.Helpers;
+using DocSmart.Views.Forms.DocumentacaoTestes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -72,16 +73,17 @@ Resultado";
             planoDeTestesModel.Cenarios.Add(cenarioModel);
 
 
-            PlanoDeTestesController pt = new PlanoDeTestesController(newPath);
-            pt.GerarPlanoTestes();
+            PlanoDeTestesController pt = new PlanoDeTestesController();
+            pt.GerarPlanoTestes(newPath);
 
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
-            
+            //openFileDialog1.ShowDialog();
+            DocumentacaoTestesForm documentacaoTestesForm = new DocumentacaoTestesForm();
+            documentacaoTestesForm.ShowDialog();
         }
 
         private void button3_Click(object sender, EventArgs e)

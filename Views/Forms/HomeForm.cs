@@ -1,6 +1,11 @@
-﻿using DocSmart.Models.Admin;
+﻿using DocSmart.Controllers;
+using DocSmart.Models.Admin;
+using DocSmart.Models.ChecklistDemanda;
 using DocSmart.Models.DocumentacaoTestes;
 using DocSmart.Models.PlanoDeTestes;
+using DocSmart.Views.Forms.ChecklistDemanda;
+using DocSmart.Views.Forms.ControleTestes;
+using DocSmart.Views.Forms.DocumentacaoTestes;
 using DocSmart.Views.Forms.PlanoDeTestes;
 using DocSmart.Views.Helpers;
 using System;
@@ -51,7 +56,7 @@ namespace DocSmart.Views.Forms
             try
             {
                 DocumentacaoTesteModel documentacaoTesteModel = DocumentacaoTesteModel.Clear;
-                //Utils.ProximaTela(this, new DocumentacaoTestesForm());
+                Utils.ProximaTela(this, new DocumentacaoTestesForm());
             }
             catch (Exception ex)
             {
@@ -63,8 +68,8 @@ namespace DocSmart.Views.Forms
         {
             try
             {
-                throw new NotImplementedException();
-                //TODO: Adicionar fluxo de tela ControleTestes
+                DocumentacaoTesteModel documentacaoTesteModel = DocumentacaoTesteModel.Clear;
+                Utils.ProximaTela(this, new ControleTestesForm());
             }
             catch (Exception ex)
             {
@@ -76,8 +81,8 @@ namespace DocSmart.Views.Forms
         {
             try
             {
-                throw new NotImplementedException();
-                //TODO: Adicionar fluxo de tela ChecklistDemanda
+                ChecklistDemandaModel checklistDemandaModel = ChecklistDemandaModel.Clear;
+                Utils.ProximaTela(this, new ChecklistDemandaForm());
             }
             catch (Exception ex)
             {

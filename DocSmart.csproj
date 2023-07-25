@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ArquivoHelper.cs" />
     <Compile Include="Controllers\ChecklistDemandaController.cs" />
     <Compile Include="Controllers\ControleTestesController.cs" />
     <Compile Include="Controllers\DocumentacaoTestesController.cs" />
@@ -81,6 +82,24 @@
     </Compile>
     <Compile Include="Views\Componentes\Navbar.Designer.cs">
       <DependentUpon>Navbar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\ChecklistDemanda\ChecklistDemandaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\ChecklistDemanda\ChecklistDemandaForm.Designer.cs">
+      <DependentUpon>ChecklistDemandaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\ControleTestes\ControleTestesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\ControleTestes\ControleTestesForm.Designer.cs">
+      <DependentUpon>ControleTestesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Forms\DocumentacaoTestes\DocumentacaoTestesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Forms\DocumentacaoTestes\DocumentacaoTestesForm.Designer.cs">
+      <DependentUpon>DocumentacaoTestesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Forms\HomeForm.cs">
       <SubType>Form</SubType>
@@ -131,6 +150,15 @@
     </Compile>
     <EmbeddedResource Include="Views\Componentes\Navbar.resx">
       <DependentUpon>Navbar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\ChecklistDemanda\ChecklistDemandaForm.resx">
+      <DependentUpon>ChecklistDemandaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\ControleTestes\ControleTestesForm.resx">
+      <DependentUpon>ControleTestesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Forms\DocumentacaoTestes\DocumentacaoTestesForm.resx">
+      <DependentUpon>DocumentacaoTestesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Forms\HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
