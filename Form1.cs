@@ -108,8 +108,8 @@ Resultado";
             checklistDemanda.Testes = MockDados.Formalizacoes();
             checklistDemanda.Suporte = MockDados.Formalizacoes();
 
-            ChecklistDemandaController checklist = new ChecklistDemandaController(folderBrowserDialog1.SelectedPath);
-            checklist.CriarChecklist();
+            ChecklistDemandaController checklist = new ChecklistDemandaController();
+            checklist.CriarChecklist(folderBrowserDialog1.SelectedPath);
         }
     }
 }

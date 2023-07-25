@@ -39,8 +39,8 @@ namespace DocSmart.Views.Forms.ChecklistDemanda
             checklistDemanda.Testes = txtTeste.CheckedItems.OfType<string>().ToList();
             checklistDemanda.Suporte = txtSuporte.CheckedItems.OfType<string>().ToList();
 
-            ChecklistDemandaController checklist = new ChecklistDemandaController(folderBrowserDialog.SelectedPath);
-            checklist.CriarChecklist();
+            ChecklistDemandaController checklist = new ChecklistDemandaController();
+            checklist.CriarChecklist(folderBrowserDialog.SelectedPath);
         }
     }
 }

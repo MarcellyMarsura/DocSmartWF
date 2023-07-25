@@ -63,6 +63,7 @@ namespace DocSmart.Controllers
             finally
             {
                 FecharArquivos();
+                ArquivoHelper.MessageBoxSucesso($"Controle de testes foi gerado no diretório {diretorioNovoArquivo}");
             }
         }
 
