@@ -4,12 +4,18 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DocSmart.Controllers
 {
     public static class ArquivoHelper
     {
         private static readonly string diretorioProjeto = Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory())?.FullName)?.FullName;
+
+        public static void MessageBoxSucesso(string mensagem)
+        {
+            MessageBox.Show(mensagem, "SUCESSO!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
 
         public static void LiberarRecursos(object obj)
         {

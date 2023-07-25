@@ -35,8 +35,8 @@ namespace DocSmart.Views.Forms.DocumentacaoTestes
 
         private void btnGerarArquivo_Click(object sender, EventArgs e)
         {
-            var documentacaoTestes = new DocumentacaoTestesController(openFileDialog.FileName, folderBrowserDialog.SelectedPath);
-            documentacaoTestes.LerExcel();
+            var documentacaoTestes = new DocumentacaoTestesController(openFileDialog.FileName);
+            documentacaoTestes.GerarDocumentosTestes(folderBrowserDialog.SelectedPath);
         }
 
  

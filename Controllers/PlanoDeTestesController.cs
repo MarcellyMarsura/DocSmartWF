@@ -63,8 +63,7 @@ namespace DocSmart.Controllers
             finally
             {
                 FecharArquivos();
-                MessageBox.Show($"Plano de testes foi gerado no diretório {diretorioNovoArquivo}",
-                                "SUCESSO!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ArquivoHelper.MessageBoxSucesso($"Plano de testes foi gerado no diretório {diretorioNovoArquivo}");
             }
 
         }
@@ -131,7 +130,6 @@ namespace DocSmart.Controllers
         {
             string nomeArquivo = $"{planoTeste.HeaderPlanoTeste.CodigoDemanda} - Plano de Teste.xlsx";
             newWorkbook.SaveAs($"{diretorioNovoArquivo}\\{nomeArquivo}", Excel.XlFileFormat.xlWorkbookDefault);
-
         }
 
         private void FecharArquivos()
