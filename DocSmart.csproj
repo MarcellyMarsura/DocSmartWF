@@ -54,7 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\DocumentacaoTestes.cs" />
+    <Compile Include="Controllers\ChecklistDemandaController.cs" />
+    <Compile Include="Controllers\ControleTestesController.cs" />
+    <Compile Include="Controllers\DocumentacaoTestesController.cs" />
     <Compile Include="Controllers\PlanoDeTestesController.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -64,6 +66,7 @@
     </Compile>
     <Compile Include="MockDados.cs" />
     <Compile Include="Models\Admin\UsuarioModel.cs" />
+    <Compile Include="Models\ChecklistDemanda\ChecklistDemandaModel.cs" />
     <Compile Include="Models\DocumentacaoTestes\DocumentacaoCenarioModel.cs" />
     <Compile Include="Models\DocumentacaoTestes\DocumentacaoTesteModel.cs" />
     <Compile Include="Models\PlanoDeTestes\CenarioModel.cs" />
@@ -144,6 +147,8 @@
     <EmbeddedResource Include="Views\Forms\SobreForm.resx">
       <DependentUpon>SobreForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Arquivos\Templates\ChecklistDemanda.xlsx" />
+    <None Include="Arquivos\Templates\ControleTestes.xlsx" />
     <None Include="Arquivos\Templates\DocumentacaoTestes.docx" />
     <None Include="Arquivos\Templates\PlanoDeTestes.xlsx" />
     <None Include="packages.config" />

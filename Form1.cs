@@ -1,4 +1,5 @@
 ﻿using DocSmart.Controllers;
+using DocSmart.Models.ChecklistDemanda;
 using DocSmart.Models.PlanoDeTestes;
 using DocSmart.Views.Helpers;
 using System;
@@ -86,8 +87,27 @@ Resultado";
         private void button3_Click(object sender, EventArgs e)
         {
             folderBrowserDialog1.ShowDialog();
-            DocumentacaoTestes documentacaoTestes = new DocumentacaoTestes(openFileDialog1.FileName, folderBrowserDialog1.SelectedPath);
-            documentacaoTestes.LerExcel();
+            //DocumentacaoTestesController documentacaoTestes = new DocumentacaoTestesController(openFileDialog1.FileName, folderBrowserDialog1.SelectedPath);
+            //documentacaoTestes.LerExcel();
+
+            ControleTestesController controleTestes = new ControleTestesController(openFileDialog1.FileName, folderBrowserDialog1.SelectedPath);
+            controleTestes.GeraControleTestes();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog1.ShowDialog();
+
+            ChecklistDemandaModel checklistDemanda = ChecklistDemandaModel.Instance;
+            checklistDemanda.Formalizacao = MockDados.Formalizacoes();
+            checklistDemanda.Planejamento = MockDados.Formalizacoes();
+            checklistDemanda.Desenho = MockDados.Formalizacoes();
+            checklistDemanda.Construcao = MockDados.Formalizacoes();
+            checklistDemanda.Testes = MockDados.Formalizacoes();
+            checklistDemanda.Suporte = MockDados.Formalizacoes();
+
+            ChecklistDemandaController checklist = new ChecklistDemandaController(folderBrowserDialog1.SelectedPath);
+            checklist.CriarChecklist();
         }
     }
 }

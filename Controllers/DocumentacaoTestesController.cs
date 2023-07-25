@@ -12,7 +12,7 @@ using Word = Microsoft.Office.Interop.Word;
 
 namespace DocSmart.Controllers
 {
-    public class DocumentacaoTestes
+    public class DocumentacaoTestesController
     {
         //string currentDirectory;
         //string pathProjeto;
@@ -29,7 +29,7 @@ namespace DocSmart.Controllers
 
         DocumentacaoTesteModel documentacaoTeste;
   
-        public DocumentacaoTestes(string pathExcel, string pathWord)
+        public DocumentacaoTestesController(string pathExcel, string pathWord)
         {
             //currentDirectory = Directory.GetParent(Directory.GetCurrentDirectory())?.FullName;
             //pathProjeto = Directory.GetParent(Directory.GetParent(currentDirectory)?.FullName)?.FullName;

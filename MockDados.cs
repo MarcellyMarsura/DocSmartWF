@@ -74,5 +74,16 @@ namespace DocSmart
             return modulos;
         }
 
+        public static List<string> Formalizacoes()
+        {
+            List<string> Formalizacoes = new List<string>
+            {
+                "AO001 Checklist Documentos",
+                "E-mail de Formalização de Riscos (Envio e Aprovação)",
+            };
+
+            return Formalizacoes;
+        }
+
     }
 }
