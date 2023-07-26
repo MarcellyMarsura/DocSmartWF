@@ -39,6 +39,16 @@ namespace DocSmart.Views.Forms.DocumentacaoTestes
             documentacaoTestes.GerarDocumentosTestes(folderBrowserDialog.SelectedPath);
         }
 
- 
+        private void DocumentacaoTestesForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                Utils.TelaAnterior(HomeForm.Instance, this);
+            }
+            catch (Exception ex)
+            {
+                Utils.ExibeMensagemErro(ex.Message);
+            }
+        }
     }
 }

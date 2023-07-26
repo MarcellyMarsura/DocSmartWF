@@ -143,6 +143,7 @@
             this.Name = "ControleTestesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DocSmart";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ControleTestesForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -38,6 +38,11 @@ namespace DocSmart.Views.Forms.PlanoDeTestes
             dgCenarios.Columns.Add("Resultado", "Resultado");
             dgCenarios.Columns.Add("Descricao", "Descrição");
 
+            dgCenarios.Columns["Sistema"].Width = 100;
+            dgCenarios.Columns["Modulos"].Width = 150;
+            dgCenarios.Columns["Resultado"].Width = 250;
+            dgCenarios.Columns["Descricao"].Width = 250;
+
         }
 
         private void btnNovoCenario_Click(object sender, EventArgs e)
@@ -68,12 +73,15 @@ namespace DocSmart.Views.Forms.PlanoDeTestes
         {
             try
             {
-                //TODO: Adicionar OpenFolderDialog para inserir newPath
-
+                labelCarregando.Visible = true;
                 folderBrowserDialog1.ShowDialog();
                 string newPath = folderBrowserDialog1.SelectedPath;
+                
                 PlanoDeTestesController planoDeTestesController = new PlanoDeTestesController();
                 planoDeTestesController.GerarPlanoTestes(newPath);
+                labelCarregando.Visible = false;
+                this.Close();
+                Utils.TelaAnterior(HomeForm.Instance, NovoPlanoForm.Instance);
             }
             catch (Exception ex)
             {
@@ -114,5 +122,7 @@ namespace DocSmart.Views.Forms.PlanoDeTestes
                 Utils.ExibeMensagemErro(ex.Message);
             }
         }
+
+
     }
 }

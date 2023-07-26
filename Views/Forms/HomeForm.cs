@@ -42,7 +42,7 @@ namespace DocSmart.Views.Forms
         {
             try
             {
-                PlanoDeTestesModel planoDeTestes = PlanoDeTestesModel.Clear;
+                PlanoDeTestesModel planoDeTestes = PlanoDeTestesModel.Clear();
                 Utils.ProximaTela(this, new NovoPlanoForm());
             }
             catch (Exception ex)

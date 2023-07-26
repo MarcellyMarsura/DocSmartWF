@@ -53,8 +53,8 @@ namespace DocSmart.Views.Forms.PlanoDeTestes
 
             dgPassos.Columns["NumeroPasso"].Width = 80;
             dgPassos.Columns["Tela"].Width = 150;
-            dgPassos.Columns["Descricao"].Width = 25;
-            dgPassos.Columns["Resultado"].Width = 350;
+            dgPassos.Columns["Descricao"].Width = 250;
+            dgPassos.Columns["Resultado"].Width = 250;
         }
 
         private void btnFinalizarCenario_Click(object sender, EventArgs e)
@@ -103,6 +103,13 @@ namespace DocSmart.Views.Forms.PlanoDeTestes
                     dgPassos.DataSource = null;
                     dgPassos.DataSource = cenarioModel.Passos;
                     isEditMode = false;
+
+                    txtNumeroPasso.Value++;
+                    txtResultadoPasso.Text = string.Empty;
+                    txtDescricaoPasso.Text = string.Empty;
+                    txtTela.Text = string.Empty;
+                    btnExcluirPasso.Visible = false;
+                    txtNumeroPasso.Enabled = true;
                 }
 
             }
@@ -118,6 +125,8 @@ namespace DocSmart.Views.Forms.PlanoDeTestes
                 && isEditMode)
             {
                 cenarioModel.Passos.Remove(cenarioModel.Passos.Find(x => x.NumeroPasso == numeroPasso));
+                btnExcluirPasso.Visible = false;
+                txtNumeroPasso.Enabled = true;
             }
             else if ((cenarioModel.Passos.FindIndex(x => x.NumeroPasso == numeroPasso) != -1
                 && !isEditMode))
@@ -141,6 +150,8 @@ namespace DocSmart.Views.Forms.PlanoDeTestes
                     txtDescricaoPasso.Text = selectedRow.Cells[2].Value.ToString();
                     txtResultadoPasso.Text = selectedRow.Cells[3].Value.ToString();
                     isEditMode = true;
+                    btnExcluirPasso.Visible = true;
+                    txtNumeroPasso.Enabled = false;
                 }
             }
             catch (Exception ex)

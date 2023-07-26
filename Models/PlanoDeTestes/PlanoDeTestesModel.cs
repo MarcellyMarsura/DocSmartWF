@@ -8,7 +8,7 @@ namespace DocSmart.Models.PlanoDeTestes
 {
     public sealed class PlanoDeTestesModel
     {
-        private static readonly PlanoDeTestesModel instance = new PlanoDeTestesModel();
+        private static PlanoDeTestesModel instance = new PlanoDeTestesModel();
 
         public HeaderPlanoTesteModel HeaderPlanoTeste { get; set; }
 
@@ -21,6 +21,10 @@ namespace DocSmart.Models.PlanoDeTestes
 
         public static PlanoDeTestesModel Instance { get => instance; }
 
-        public static PlanoDeTestesModel Clear { get => new PlanoDeTestesModel(); }
+        public static PlanoDeTestesModel Clear()
+        {
+            instance = new PlanoDeTestesModel();
+            return instance;
+        }
     }
 }

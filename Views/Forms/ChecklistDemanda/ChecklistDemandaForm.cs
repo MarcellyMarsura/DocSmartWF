@@ -1,5 +1,6 @@
 ﻿using DocSmart.Controllers;
 using DocSmart.Models.ChecklistDemanda;
+using DocSmart.Views.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,6 +42,18 @@ namespace DocSmart.Views.Forms.ChecklistDemanda
 
             ChecklistDemandaController checklist = new ChecklistDemandaController();
             checklist.CriarChecklist(folderBrowserDialog.SelectedPath);
+        }
+
+        private void ChecklistDemandaForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                Utils.TelaAnterior(HomeForm.Instance, this);
+            }
+            catch (Exception ex)
+            {
+                Utils.ExibeMensagemErro(ex.Message);
+            }
         }
     }
 }

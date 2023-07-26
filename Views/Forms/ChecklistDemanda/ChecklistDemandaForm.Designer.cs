@@ -35,15 +35,15 @@
             this.txtConstrucao = new System.Windows.Forms.CheckedListBox();
             this.txtTeste = new System.Windows.Forms.CheckedListBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtSuporte = new System.Windows.Forms.CheckedListBox();
-            this.btnGerarArquivo = new System.Windows.Forms.Button();
-            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnGerarArquivo = new System.Windows.Forms.Button();
+            this.txtSuporte = new System.Windows.Forms.CheckedListBox();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -128,15 +128,59 @@
             this.panel1.Size = new System.Drawing.Size(764, 956);
             this.panel1.TabIndex = 15;
             // 
-            // txtSuporte
+            // label7
             // 
-            this.txtSuporte.CheckOnClick = true;
-            this.txtSuporte.FormattingEnabled = true;
-            this.txtSuporte.HorizontalScrollbar = true;
-            this.txtSuporte.Location = new System.Drawing.Point(405, 650);
-            this.txtSuporte.Name = "txtSuporte";
-            this.txtSuporte.Size = new System.Drawing.Size(345, 220);
-            this.txtSuporte.TabIndex = 15;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(401, 628);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(68, 21);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Suporte:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(22, 628);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(54, 21);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "Testes:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(401, 351);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 21);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "Construção:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(22, 351);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(74, 21);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "Desenho:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(401, 75);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(108, 21);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "Planejamento:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(26, 75);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(105, 21);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Formalização:";
             // 
             // btnGerarArquivo
             // 
@@ -148,59 +192,15 @@
             this.btnGerarArquivo.UseVisualStyleBackColor = true;
             this.btnGerarArquivo.Click += new System.EventHandler(this.btnGerarArquivo_Click);
             // 
-            // label2
+            // txtSuporte
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(26, 75);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 21);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "Formalização:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(401, 75);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(108, 21);
-            this.label3.TabIndex = 18;
-            this.label3.Text = "Planejamento:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 351);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 21);
-            this.label4.TabIndex = 19;
-            this.label4.Text = "Desenho:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(401, 351);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 21);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "Construção:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(22, 628);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(54, 21);
-            this.label6.TabIndex = 21;
-            this.label6.Text = "Testes:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(401, 628);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(68, 21);
-            this.label7.TabIndex = 22;
-            this.label7.Text = "Suporte:";
+            this.txtSuporte.CheckOnClick = true;
+            this.txtSuporte.FormattingEnabled = true;
+            this.txtSuporte.HorizontalScrollbar = true;
+            this.txtSuporte.Location = new System.Drawing.Point(405, 650);
+            this.txtSuporte.Name = "txtSuporte";
+            this.txtSuporte.Size = new System.Drawing.Size(345, 220);
+            this.txtSuporte.TabIndex = 15;
             // 
             // ChecklistDemandaForm
             // 
@@ -217,6 +217,7 @@
             this.Name = "ChecklistDemandaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DocSmart";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ChecklistDemandaForm_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

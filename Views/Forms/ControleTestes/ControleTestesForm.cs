@@ -1,4 +1,5 @@
 ﻿using DocSmart.Controllers;
+using DocSmart.Views.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,6 +37,18 @@ namespace DocSmart.Views.Forms.ControleTestes
         {
             var controleTestes = new ControleTestesController(openFileDialog.FileName);
             controleTestes.GeraControleTestes(folderBrowserDialog.SelectedPath);
+        }
+
+        private void ControleTestesForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                Utils.TelaAnterior(HomeForm.Instance, this);
+            }
+            catch (Exception ex)
+            {
+                Utils.ExibeMensagemErro(ex.Message);
+            }
         }
     }
 }

@@ -37,6 +37,7 @@
             this.btnNovoCenario = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.labelCarregando = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgCenarios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -111,11 +112,23 @@
             this.label5.TabIndex = 11;
             this.label5.Text = "Cenários de Teste";
             // 
+            // labelCarregando
+            // 
+            this.labelCarregando.AutoSize = true;
+            this.labelCarregando.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCarregando.Location = new System.Drawing.Point(243, 407);
+            this.labelCarregando.Name = "labelCarregando";
+            this.labelCarregando.Size = new System.Drawing.Size(148, 25);
+            this.labelCarregando.TabIndex = 12;
+            this.labelCarregando.Text = "Carregando . . .";
+            this.labelCarregando.Visible = false;
+            // 
             // CenariosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.labelCarregando);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnNovoCenario);
             this.Controls.Add(this.btnFinalizarPlano);
@@ -138,5 +151,6 @@
         private System.Windows.Forms.Button btnNovoCenario;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Label labelCarregando;
     }
 }
